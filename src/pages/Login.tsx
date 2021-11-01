@@ -1,7 +1,7 @@
 import React, { SyntheticEvent, useState } from 'react';
 import { Redirect } from 'react-router';
 
-function Login() {
+function Login(props: { setName: (name: string) => void }) {
   const [data, setData] = useState({
     password: '',
     email: '',
@@ -26,6 +26,7 @@ function Login() {
       .then((json) => {
         if (json?.id !== 0) {
           setRedirect(true);
+          props.setName(json.name);
         }
       });
   };
